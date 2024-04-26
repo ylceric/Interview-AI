@@ -81,6 +81,7 @@ else:
         send_to_chat(None)
 
     if st.button('Done with Interview'): 
+        st.success('Interview Ended', icon='✅')
         st.subheader("Here is your feedback of this interview")
         st.divider()
         advisor_llm = api_request.AdvisorGPT()
