@@ -1,12 +1,5 @@
 import streamlit as st
-import streamlit_chatbox as stc
-import time
-import api_request
-import streamlit_scrollable_textbox as stx
-import pandas as pd
-import random
 import os
-import glob
 import pdfplumber
 import json
 import st_pages
