@@ -2,11 +2,9 @@ import streamlit as st
 import streamlit_chatbox as stc
 import time
 import api_request
-import json
-import os
 
 st.set_page_config(
-    page_title='Mock Interview - Interview Bot', 
+    page_title='Mock Interview - MockView', 
     page_icon='🧑‍💻'
 )
 
@@ -17,7 +15,7 @@ if st.sidebar.button('🔄 Restart'):
     chat_box.reset_history()
     st.rerun()
 
-bot_llm = st.sidebar.radio('Bot LLM: ', ['OpenAI GPT-4 Turbo', 'OpenAI GPT-3.5 Turbo'])
+bot_llm = st.sidebar.radio('LLM: ', ['OpenAI GPT-4 Turbo', 'OpenAI GPT-3.5 Turbo'])
 st.sidebar.divider()
 
 
@@ -30,11 +28,9 @@ if 'info' not in st.session_state:
 
     st.sidebar.markdown('**This demo presented by:**')
     st.sidebar.markdown('*University of Washington - Foster School of Business*')
-    st.sidebar.markdown('*:violet[Class of 2024 - MSIS [TBD]]*')
+    st.sidebar.markdown('*:violet[Class of 2024 - MSIS MaLou]*')
 
 else: 
-    # with open('info.json') as f:
-    #         info = json.load(f)
     info = st.session_state['info']
     
     st.sidebar.subheader('Company & Job Info')
@@ -44,19 +40,17 @@ else:
 
     st.sidebar.markdown('**This demo presented by:**')
     st.sidebar.markdown('*University of Washington - Foster School of Business*')
-    st.sidebar.markdown('*:violet[Class of 2024 - MSIS [TBD]]*')
+    st.sidebar.markdown('*:violet[Class of 2024 - MSIS MaLou]*')
 
 
-    llm_avatar = "assistant"
-    p_avatar = "user"
+    llm_avatar = 'avatar/recruiter.png'
+    p_avatar = 'avatar/interviewee.png'
 
     # initialize llm
     if bot_llm == 'OpenAI GPT-4 Turbo': 
         llm = api_request.RecruiterGPT(info)
-        llm_avatar = 'avatar/recruiter.png'
     elif bot_llm == 'OpenAI GPT-3.5 Turbo': 
         llm = api_request.RecruiterGPT(info, is_4=False)
-        p_avatar = 'avatar/interviewee.png'
 
 
     chat_box = stc.ChatBox(user_avatar=p_avatar, assistant_avatar=llm_avatar)

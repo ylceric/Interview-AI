@@ -11,6 +11,7 @@ class RecruiterGPT:
             3. 2-3 behavior question 
             4. if the job is related to technical, ask technical questions. If not related to technical, skip this step. 
             5. ask interviewer if they have any question. 
+            6. wrap-up interview
 
             Start interview question based on text delimited by <>.
             Text: <{info}>
@@ -82,10 +83,12 @@ class AdvisorGPT:
 
 class IntervieweeGPT:
 
-    def __init__(self, is_4 = True): 
-        ## [TODO]
+    def __init__(self, info, is_4 = True): 
         self.init_prompt = f"""
-            [TODO]
+            You are new grad student and want to get your first job or a professional looking to find a job. You are at a interview right now. You will answer interview questions and provide example with resume provided. Your answer need to be concise and clear. Each answer need to be less than 300 words. If you think the interview is done (the recruiter has already wrapped up), reply only one word "done" with all lower case, without the quote.
+            Start interviewing based on text delimited by <>.
+            Text: <{info}>. 
+            You will get question and only answer based on that
             """
 
         self.client = OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
@@ -104,14 +107,8 @@ class IntervieweeGPT:
         return messages
 
     def get_answer(self, history): 
-        pre_messages = self.read_history(history)
-        pre_text = ''
-
-        for message in pre_messages: 
-            pre_text = pre_text + 'role: ' + message['role'] + 'content: ' + message['content'] + '\n'
+        messages = self.read_history(history)
         
-        messages = [{"role": "system", "content": f"[TODO]"}]
-
         stream = self.client.chat.completions.create(model=self.gpt_ver, messages=messages, stream=True)
 
         return stream

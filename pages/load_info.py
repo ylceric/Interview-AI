@@ -1,10 +1,9 @@
 import streamlit as st
 import os
 import pdfplumber
-import json
 
 st.set_page_config(
-    page_title='Load Info - Interview Bot', 
+    page_title='Load Info - MockView', 
     page_icon='🧑‍💻'
 )
 
@@ -13,21 +12,20 @@ st.header('Tell me about your upcoming interview... 💬', divider='rainbow')
 
 st.sidebar.markdown('**This demo presented by:**')
 st.sidebar.markdown('*University of Washington - Foster School of Business*')
-st.sidebar.markdown('*:violet[Class of 2024 - MSIS Team [TBD]]*')
+st.sidebar.markdown('*:violet[Class of 2024 - MSIS Team MaLou]*')
 
 if 'info' in st.session_state: 
     st.success('Your information has been successfully recorded! Please choose interview type to continue...', icon="✅")
 
-    if st.button('Mock Interview'): 
+    if st.button('🧑‍💻 Mock Interview'): 
         st.switch_page('pages/interview.py')
-    if st.button('Speculate Interview'): 
+    if st.button('👀 Speculate Interview'): 
         st.switch_page('pages/sp_interview.py')
 
     st.divider()
     if st.button('🔄 Delete Info & Start New'): 
-        if os.path.isfile('info.json'): 
-            os.remove('info.json')
-            st.rerun()
+        del st.session_state['info']
+        st.rerun()
     
     info = st.session_state['info']
 

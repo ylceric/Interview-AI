@@ -2,7 +2,7 @@ import streamlit as st
 import st_pages
 
 st.set_page_config(
-    page_title='Interview Bot', 
+    page_title='MockView', 
     page_icon='🧑‍💻'
 )
 
@@ -10,7 +10,7 @@ st.set_page_config(
 st_pages.show_pages([
     st_pages.Page('webui.py', 'About', '🏠'),
     st_pages.Page('pages/load_info.py', 'Load Info', '📝'),
-    
+
     st_pages.Section('Interview'),
     st_pages.Page('pages/interview.py', 'Mock Interview', '▶️'), 
     st_pages.Page('pages/sp_interview.py', 'Speculate Interview', '▶️')
@@ -18,16 +18,14 @@ st_pages.show_pages([
 
 st.sidebar.markdown('**This demo presented by:**')
 st.sidebar.markdown('*University of Washington - Foster School of Business*')
-st.sidebar.markdown('*:violet[Class of 2024 - MSIS Team [TBD]]*')
+st.sidebar.markdown('*:violet[Class of 2024 - MSIS Team MaLou]*')
 
 
 # main page
-st.header('🧑‍💻 Interview Bot', divider='rainbow')
+st.header('🧑‍💻 MockView', divider='rainbow')
 st.subheader('💭 About this App')
 st.subheader("**Redefining Interview Prep. Experience the AI Interview Assistant — Fair, Efficient, Personalized.**")
 
-with st.expander('**⌨️ 💬Choose Your Style:** Text or voice, the choice is yours.'): 
-    st.markdown("Our system offers two modes of communication: AI chatbots and AI voice conversations. Whether you prefer to communicate via typing or want to practice real-time voice conversations, our platform has the right practice for you. This flexibility allows each user to prepare for the interview in the most comfortable environment and maximize their practice.")
 
 with st.expander('**🤖 🤖Simulate Reality:** AI vs AI mode lets you foresee your future performance.'): 
     st.markdown("Using our AI imitation function, based on your resume and constantly updated personal information, the AI can simulate your performance and conduct an interview. This will not only give you an idea of possible questions and your own response style before the interview, but it will also help you prepare and refine your interview strategies to better prepare for the actual interview.")
