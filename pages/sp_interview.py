@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit_chatbox as stc
 import api_request
 import pandas as pd
-import st_pages
 
 st.set_page_config(
     page_title='Interview Bot', 
@@ -15,7 +14,7 @@ chat_box = stc.ChatBox()
 if st.sidebar.button('🔄 New'): 
     chat_box.reset_history()
     st.rerun()
-    
+
 bot_llm = st.sidebar.radio('Bot LLM: ', ['OpenAI GPT-4 Turbo', 'OpenAI GPT-3.5 Turbo'])
 
 st.sidebar.markdown('**This demo presented by:**')

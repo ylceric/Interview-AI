@@ -4,7 +4,6 @@ import time
 import api_request
 import json
 import os
-import st_pages
 
 st.set_page_config(
     page_title='Mock Interview - Interview Bot', 
@@ -19,21 +18,34 @@ if st.sidebar.button('🔄 Restart'):
     st.rerun()
 
 bot_llm = st.sidebar.radio('Bot LLM: ', ['OpenAI GPT-4 Turbo', 'OpenAI GPT-3.5 Turbo'])
+st.sidebar.divider()
 
-st.sidebar.markdown('**This demo presented by:**')
-st.sidebar.markdown('*University of Washington - Foster School of Business*')
-st.sidebar.markdown('*:violet[Class of 2024 - MSIS [TBD]]*')
 
 # header
 st.header('Mock Interview 🧑‍💻', divider='rainbow')
 
-if not os.path.isfile('info.json'): 
+if 'info' not in st.session_state: 
     st.error('You have not load your information yet, please load your information first...', icon='🚨')
     st.page_link("pages/load_info.py", label="Click Me to load your information", icon="📝")
 
+    st.sidebar.markdown('**This demo presented by:**')
+    st.sidebar.markdown('*University of Washington - Foster School of Business*')
+    st.sidebar.markdown('*:violet[Class of 2024 - MSIS [TBD]]*')
+
 else: 
-    with open('info.json') as f:
-            info = json.load(f)
+    # with open('info.json') as f:
+    #         info = json.load(f)
+    info = st.session_state['info']
+    
+    st.sidebar.subheader('Company & Job Info')
+    st.sidebar.markdown('**Company:** ' + info['company_name'])
+    st.sidebar.markdown('**Job Title:** ' + info['job_title'])
+    st.sidebar.divider()
+
+    st.sidebar.markdown('**This demo presented by:**')
+    st.sidebar.markdown('*University of Washington - Foster School of Business*')
+    st.sidebar.markdown('*:violet[Class of 2024 - MSIS [TBD]]*')
+
 
     llm_avatar = "assistant"
     p_avatar = "user"

@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import pdfplumber
 import json
-import st_pages
 
 st.set_page_config(
     page_title='Load Info - Interview Bot', 
@@ -16,7 +15,7 @@ st.sidebar.markdown('**This demo presented by:**')
 st.sidebar.markdown('*University of Washington - Foster School of Business*')
 st.sidebar.markdown('*:violet[Class of 2024 - MSIS Team [TBD]]*')
 
-if os.path.isfile('info.json'): 
+if 'info' in st.session_state: 
     st.success('Your information has been successfully recorded! Please choose interview type to continue...', icon="✅")
 
     if st.button('Mock Interview'): 
@@ -30,24 +29,23 @@ if os.path.isfile('info.json'):
             os.remove('info.json')
             st.rerun()
     
-    with open('info.json') as f:
-        info = json.load(f)
+    info = st.session_state['info']
 
-        st.subheader('Company Name:', divider='blue')
-        st.text(info['company_name'])
+    st.subheader('Company Name:', divider='blue')
+    st.text(info['company_name'])
 
-        st.subheader('Company Description:', divider='blue')
-        st.text(info['company_description'])
+    st.subheader('Company Description:', divider='blue')
+    st.text(info['company_description'])
 
-        st.subheader('Job Title:', divider='blue')
-        st.text(info['job_title'])
-        st.text('Technical?: ' + 'Yes' if info['job_tech'] else 'No')
+    st.subheader('Job Title:', divider='blue')
+    st.text(info['job_title'])
+    st.text('Technical?: ' + 'Yes' if info['job_tech'] else 'No')
 
-        st.subheader('Job Description', divider='blue')
-        st.text(info['job_description'])
+    st.subheader('Job Description', divider='blue')
+    st.text(info['job_description'])
 
-        st.subheader('Extracted Resume', divider='blue')
-        st.text(info['resume'])
+    st.subheader('Extracted Resume', divider='blue')
+    st.text(info['resume'])
     
 
 else: 
@@ -87,7 +85,6 @@ else:
                         resume_text = resume_text + page.extract_text()
                 info['resume'] = resume_text
 
-                with open('info.json', 'w') as f:
-                    json.dump(info, f, indent=4)
+                st.session_state['info'] = info
         
             st.rerun()
