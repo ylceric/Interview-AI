@@ -120,7 +120,7 @@ else:
     if len(chat_box.history) != 0:
         st.success('Interview Ended', icon='✅')
 
-        st.subheader("Here is your feedback of this interview")
+        st.subheader("Here is your feedback of this interview", divider='blue')
         st.divider()
         advisor_llm = api_request.AdvisorGPT()
         st.write_stream(advisor_llm.get_feedback(chat_box.history))
