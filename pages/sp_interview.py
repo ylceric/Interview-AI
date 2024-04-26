@@ -15,13 +15,7 @@ chat_box = stc.ChatBox()
 if st.sidebar.button('🔄 New'): 
     chat_box.reset_history()
     st.rerun()
-st_pages.show_pages([
-    st_pages.Page('webui.py', 'About', '🏠'),
-    st_pages.Page('pages/load_info.py', 'Load Info', '📝'),
-    st_pages.Page('pages/interview.py', 'Mock Interview', '▶️'), 
-    st_pages.Page('pages/sp_interview.py', 'Speculate Interview', '▶️')
-])
-
+    
 bot_llm = st.sidebar.radio('Bot LLM: ', ['OpenAI GPT-4 Turbo', 'OpenAI GPT-3.5 Turbo'])
 
 st.sidebar.markdown('**This demo presented by:**')

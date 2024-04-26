@@ -11,12 +11,7 @@ st.set_page_config(
 
 st.header('Tell me about your upcoming interview... 💬', divider='rainbow')
 
-st_pages.show_pages([
-    st_pages.Page('webui.py', 'About', '🏠'),
-    st_pages.Page('pages/load_info.py', 'Load Info', '📝'),
-    st_pages.Page('pages/interview.py', 'Mock Interview', '▶️'), 
-    st_pages.Page('pages/sp_interview.py', 'Speculate Interview', '▶️')
-])
+
 st.sidebar.markdown('**This demo presented by:**')
 st.sidebar.markdown('*University of Washington - Foster School of Business*')
 st.sidebar.markdown('*:violet[Class of 2024 - MSIS Team [TBD]]*')

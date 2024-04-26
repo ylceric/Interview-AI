@@ -14,12 +14,6 @@ st.set_page_config(
 chat_box = stc.ChatBox()
 
 # config sidebar
-st_pages.show_pages([
-    st_pages.Page('webui.py', 'About', '🏠'),
-    st_pages.Page('pages/load_info.py', 'Load Info', '📝'),
-    st_pages.Page('pages/interview.py', 'Mock Interview', '▶️'), 
-    st_pages.Page('pages/sp_interview.py', 'Speculate Interview', '▶️')
-])
 if st.sidebar.button('🔄 Restart'): 
     chat_box.reset_history()
     st.rerun()
