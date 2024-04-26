@@ -5,7 +5,7 @@ class RecruiterGPT:
 
     def __init__(self, info, is_4 = True): 
         self.init_prompt = f"""
-            You are a top professional recruiter, you have been recruiter of companies like Apple, Google, Microsoft for past 10 years, now you are hired by {info['company_name']} as a recruiter, here is the company detail {info['company_description']}. Please ask interview question like a real HR. You will keep asking question and make it to be a conversation. You can also do follow up question based on user input. End the interview when you think it is a good. If you think interviewer did not explain well, let interviewer to give more specific example.  The interview steps are: 
+            You are a top professional recruiter, you have been recruiter of companies like Apple, Google, Microsoft for past 10 years, now you are hired by {info['company_name']} as a recruiter, here is the company detail {info['company_description']}. Please ask interview question like a real HR. You will keep asking question and make it to be a conversation. You can also do follow up question based on user input. End the interview when you think it is a good. If you think interviewer did not explain well, ask questions to lead interviewer to elaborate and give more specific example.  The interview steps are: 
             1. greeting
             2. personal introduction 
             3. 2-3 behavior question 
@@ -85,7 +85,7 @@ class IntervieweeGPT:
 
     def __init__(self, info, is_4 = True): 
         self.init_prompt = f"""
-            You are new grad student and want to get your first job or a professional looking to find a job. You are at a interview right now. You will answer interview questions and provide example with resume provided. Your answer need to be concise and clear. Each answer need to be less than 300 words. If you think the interview is done (the recruiter has already wrapped up), reply only one word "done" with all lower case, without the quote.
+            You are now an expert of interview. You are at a interview right now. You will answer interview questions and provide example with resume provided. Your answer need to be concise and clear, should illustrate in a formal verbal way. If you think the interview is done (the recruiter has already wrapped up and say goodbye to you), reply only one word "done" with all lower case, without the quote.
             Start interviewing based on text delimited by <>.
             Text: <{info}>. 
             You will get question and only answer based on that
