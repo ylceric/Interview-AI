@@ -38,13 +38,6 @@ else:
     st.sidebar.markdown('**Company:** ' + info['company_name'])
     st.sidebar.markdown('**Job Title:** ' + info['job_title'])
     st.sidebar.divider()
-    if st.sidebar.button('Done with Interview'): 
-        st.subheader("Here is your feedback of this interview")
-        st.divider()
-        advisor_llm = api_request.AdvisorGPT()
-        st.write_stream(advisor_llm.get_feedback(chat_box.history))
-        is_over = True
-    st.sidebar.divider()
 
     st.sidebar.markdown('**This demo presented by:**')
     st.sidebar.markdown('*University of Washington - Foster School of Business*')
@@ -120,6 +113,11 @@ else:
     if len(chat_box.history) != 0:
         st.success('Interview Ended', icon='✅')
 
-        st.subheader("Here is your feedback of this interview", divider='blue')
-        advisor_llm = api_request.AdvisorGPT()
-        st.write_stream(advisor_llm.get_feedback(chat_box.history))
+        if st.button('🔄 Restart '): 
+            chat_box.reset_history()
+            st.rerun()
+        else: 
+            st.subheader("Here is your feedback of this interview", divider='blue')
+            advisor_llm = api_request.AdvisorGPT()
+            st.write_stream(advisor_llm.get_feedback(chat_box.history))
+

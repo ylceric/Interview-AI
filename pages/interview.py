@@ -80,11 +80,17 @@ else:
     if len(chat_box.history) == 0:
         send_to_chat(None)
 
-    if st.button('Done with Interview'): 
+    if st.button('⏹️ Done with Interview & Give Feedback'): 
         st.success('Interview Ended', icon='✅')
-        st.subheader("Here is your feedback of this interview", divider='blue')
-        advisor_llm = api_request.AdvisorGPT()
-        st.write_stream(advisor_llm.get_feedback(chat_box.history))
+
+        if st.button('🔄 Restart '): 
+            chat_box.reset_history()
+            st.rerun()
+        else: 
+            st.subheader("Here is your feedback of this interview", divider='blue')
+            advisor_llm = api_request.AdvisorGPT()
+            st.write_stream(advisor_llm.get_feedback(chat_box.history))
+
     
     if user_query := st.chat_input('Input your response here.'):
         send_to_chat(user_query)
