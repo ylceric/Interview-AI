@@ -10,6 +10,8 @@ st.set_page_config(
 st_pages.show_pages([
     st_pages.Page('webui.py', 'About', '🏠'),
     st_pages.Page('pages/load_info.py', 'Load Info', '📝'),
+    
+    st_pages.Section('Interview'),
     st_pages.Page('pages/interview.py', 'Mock Interview', '▶️'), 
     st_pages.Page('pages/sp_interview.py', 'Speculate Interview', '▶️')
 ])
